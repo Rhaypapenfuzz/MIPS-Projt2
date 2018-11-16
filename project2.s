@@ -29,3 +29,7 @@ loop:
         bne $s0, $t3, dont_print_invalid_spaces         #if the previous_character is a space &
         beq $t5, $0, dont_print_invalid_spaces          #if the number_of_previously_seen_characters is not zero &
         beq $t1, $0, dont_print_invalid_spaces          #if the character is_not_null &
+       	beq $t1, $t6, dont_print_invalid_spaces         #if the character is_not_new_line then print invalid
+        li $v0, 4
+        la $a0, not_valid
+        syscall	
