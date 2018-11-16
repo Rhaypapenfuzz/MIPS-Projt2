@@ -19,3 +19,8 @@ main:
         li $s0, 0					#counter to help keep track of previous character. initialized as 0
         li $t5, 0					#initialized number of chracters
         li $t6, 10					#loaded new line into $t6
+	li $t7, 0					#another counter to help with number of spaces in front of actual input
+
+loop:
+        lb $t1, 0($t0)					#get string character
+        beq $t1, $t6, break_loop        #break when character is a newline char
