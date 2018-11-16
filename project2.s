@@ -24,3 +24,8 @@ main:
 loop:
         lb $t1, 0($t0)					#get string character
         beq $t1, $t6, break_loop        #break when character is a newline char
+	#if statements for different conditions and actions
+        beq $t1, $t3, dont_print_invalid_spaces         #if character is_not a space &
+        bne $s0, $t3, dont_print_invalid_spaces         #if the previous_character is a space &
+        beq $t5, $0, dont_print_invalid_spaces          #if the number_of_previously_seen_characters is not zero &
+        beq $t1, $0, dont_print_invalid_spaces          #if the character is_not_null &
