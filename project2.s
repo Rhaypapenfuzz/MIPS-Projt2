@@ -9,3 +9,8 @@ empty_string_error: .asciiz "Input is empty."
 .globl main
 
 main:
+        li $v0, 8
+        la $a0, char_array
+        syscall
+        la $t0, char_array			#loading address of userInput
+	    	lb $t1, 0($t0)					#get string character
