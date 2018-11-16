@@ -13,4 +13,9 @@ main:
         la $a0, char_array
         syscall
         la $t0, char_array			#loading address of userInput
-	    	lb $t1, 0($t0)					#get string character
+	lb $t1, 0($t0)					#get string character
+	li $t2, 0					#initializing counter i as zero
+        li $t3, 32					#storing space char into $t3
+        li $s0, 0					#counter to help keep track of previous character. initialized as 0
+        li $t5, 0					#initialized number of chracters
+        li $t6, 10					#loaded new line into $t6
