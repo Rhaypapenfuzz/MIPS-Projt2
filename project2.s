@@ -88,3 +88,8 @@ loop:
         li $t2, 97						#smallest ascii value for my lowercase letters-a
         li $t3, 117						#biggest ascii value for my lowercase letters-u
         blt $s1, $t2, dont_convert_lowercase_letter_to_digit    #if ascii[j] >= 85 and
+	bgt $s1, $t3, dont_convert_lowercase_letter_to_digit    #if ascii[j] <= 117
+        addi $t8, $s1, -87						#got the decimal value of the capital letter
+	dont_convert_lowercase_letter_to_digit:
+        li $t2, 48							#smallest ascii value for capital letters
+        li $t3, 57							#biggest ascii value for capital letters
