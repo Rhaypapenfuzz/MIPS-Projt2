@@ -113,3 +113,8 @@ loop:
         addi $s0, $s0, -1					#incremented the address to get the next character
         blt $t0, $t5, convert_next_digit_loop
         li $v0, 1
+	move $a0, $t9
+        syscall								#prints userInput's decimal equivalent
+	li $v0, 10
+	syscall
+        jr $ra
