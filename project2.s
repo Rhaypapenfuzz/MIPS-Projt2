@@ -46,11 +46,13 @@ loop:
         bne $t1, $t3, dont_count_space          #if current character is a space and
         bne $t5, $0, dont_count_space           #if num of previous character is equal to 0 then count space
         addi $t7, $t7, 1
+	
 	dont_count_space:
         move $s0, $t1           #set previous character with current one
         addi $t0, $t0, 1        #incremented the address
         addi $t2, $t2, 1        #incremented i
         j loop
+	
 	break_loop:
         li $t1, 4
         ble $t5, $t1, dont_print_too_long       #checks if userInput is more than 4
@@ -59,6 +61,7 @@ loop:
 	syscall					#print too_long_error if char>4
 	li $v0, 10
 	syscall
+	
 	dont_print_too_long:
         bne $t5, $zero, dont_print_empty_string_error   #if user input is empty, and
         beq $t1, $t6, dont_print_empty_string_error     #if user input is a newline print invalid
@@ -67,6 +70,7 @@ loop:
         syscall
 	li $v0, 10
 	syscall
+	
 	dont_print_empty_string_error:
 	#reusing registers apart from $t5- len(numofcharacters and $t7- numofspaces in front)
         li $t0, 0						#initialized counter i here
