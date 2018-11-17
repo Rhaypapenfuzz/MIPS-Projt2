@@ -33,3 +33,7 @@ loop:
         li $v0, 4
         la $a0, not_valid
         syscall	
+	
+	#print invalid spaces
+	li $v0, 10
+	syscall
