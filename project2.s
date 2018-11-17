@@ -56,3 +56,6 @@ loop:
         ble $t5, $t1, dont_print_too_long       #checks if userInput is more than 4
         li $v0, 4
         la $a0, too_long
+	syscall					#print too_long_error if char>4
+	li $v0, 10
+	syscall
