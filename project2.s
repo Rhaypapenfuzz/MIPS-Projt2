@@ -75,3 +75,7 @@ loop:
         add $s0, $s0, $t7					#gets starting address of the number
         add $s0,$s0, $t1					#subtract -1 from the address(starts from the end)
         li $t4, 1						#power for calculation is 31
+	li $t9, 0						#initial sum of decimal value = zero
+        li $s3, 31						#constant for base-31
+	convert_next_digit_loop:
+	li $t8, -1      #initialized the digit to -1
