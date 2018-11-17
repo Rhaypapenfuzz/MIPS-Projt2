@@ -37,3 +37,7 @@ loop:
 	#print invalid spaces
 	li $v0, 10
 	syscall
+	
+	dont_print_invalid_spaces:
+        beq $t1, $t3, dont_incr_num_of_characters       #increase number of characters counter if character is not a space
+        addi $t5, $t5, 1
