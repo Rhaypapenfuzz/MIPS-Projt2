@@ -108,3 +108,8 @@ loop:
         mul $s2, $t8, $t4					#decimal = digit * power_of_31
         mul $t4, $t4, $s3					#power_of_base *= 31
         add $t9, $t9, $s2					#sum+= decimal
+	addi $t0, $t0, 1					#incremented i
+        addi $t1, $t1, -1					#decremented j
+        addi $s0, $s0, -1					#incremented the address to get the next character
+        blt $t0, $t5, convert_next_digit_loop
+        li $v0, 1
