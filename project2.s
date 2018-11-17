@@ -79,3 +79,7 @@ loop:
         li $s3, 31						#constant for base-31
 	convert_next_digit_loop:
 	li $t8, -1      #initialized the digit to -1
+	li $t2, 65							#smallest ascii value for capital letters-A
+        li $t3, 85							#biggest ascii value for capital letters-U
+        blt $s1, $t2, dont_convert_capital_letter_to_digit      #if ascii[j] >= 65 and
+        bgt $s1, $t3, dont_convert_capital_letter_to_digit      #if ascii[j] <= 85
