@@ -93,3 +93,8 @@ loop:
 	dont_convert_lowercase_letter_to_digit:
         li $t2, 48							#smallest ascii value for capital letters
         li $t3, 57							#biggest ascii value for capital letters
+	blt $s1, $t2, dont_convert_digit_to_digit       #if ascii[j] >= 48 and
+        bgt $s1, $t3, dont_convert_digit_to_digit       #if ascii[j] <= 57
+        addi $t8, $s1, -48						#got the decimal value of the capital letter
+	dont_convert_digit_to_digit:
+	li $s4, -1			 #initialized -1 in $s4
