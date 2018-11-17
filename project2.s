@@ -51,3 +51,8 @@ loop:
         addi $t0, $t0, 1        #incremented the address
         addi $t2, $t2, 1        #incremented i
         j loop
+	break_loop:
+        li $t1, 4
+        ble $t5, $t1, dont_print_too_long       #checks if userInput is more than 4
+        li $v0, 4
+        la $a0, too_long
