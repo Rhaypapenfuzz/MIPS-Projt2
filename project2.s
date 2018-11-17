@@ -46,3 +46,8 @@ loop:
         bne $t1, $t3, dont_count_space          #if current character is a space and
         bne $t5, $0, dont_count_space           #if num of previous character is equal to 0 then count space
         addi $t7, $t7, 1
+	dont_count_space:
+        move $s0, $t1           #set previous character with current one
+        addi $t0, $t0, 1        #incremented the address
+        addi $t2, $t2, 1        #incremented i
+        j loop
