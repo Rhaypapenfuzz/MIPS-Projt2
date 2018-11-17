@@ -69,4 +69,9 @@ loop:
 	syscall
 	dont_print_empty_string_error:
 	#reusing registers apart from $t5- len(numofcharacters and $t7- numofspaces in front)
-        li $t0, 0							#initialized counter i here
+        li $t0, 0						#initialized counter i here
+	addi $t1, $t5, -1					#initial j(length-1)
+        la $s0, char_array					#gets the string address
+        add $s0, $s0, $t7					#gets starting address of the number
+        add $s0,$s0, $t1					#subtract -1 from the address(starts from the end)
+        li $t4, 1						#power for calculation is 31
