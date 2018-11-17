@@ -103,3 +103,8 @@ loop:
 	la $a0, not_valid
 	syscall
 	li $v0, 10
+	syscall
+	dont_print_invalid_symbol:
+        mul $s2, $t8, $t4					#decimal = digit * power_of_31
+        mul $t4, $t4, $s3					#power_of_base *= 31
+        add $t9, $t9, $s2					#sum+= decimal
