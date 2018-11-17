@@ -59,3 +59,9 @@ loop:
 	syscall					#print too_long_error if char>4
 	li $v0, 10
 	syscall
+	dont_print_too_long:
+        bne $t5, $zero, dont_print_empty_string_error   #if user input is empty, and
+        beq $t1, $t6, dont_print_empty_string_error     #if user input is a newline print invalid
+        li $v0, 4
+        la $a0, empty_string_error
+        syscall
