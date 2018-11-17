@@ -97,4 +97,9 @@ loop:
         bgt $s1, $t3, dont_convert_digit_to_digit       #if ascii[j] <= 57
         addi $t8, $s1, -48						#got the decimal value of the capital letter
 	dont_convert_digit_to_digit:
-	li $s4, -1			 #initialized -1 in $s4
+	li $s4, -1			 			#initialized -1 in $s4
+	bne $t8, $s4, dont_print_invalid_symbol 		#if $t8 is -1 then print invalid_spaces
+	li $v0, 4
+	la $a0, not_valid
+	syscall
+	li $v0, 10
