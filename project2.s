@@ -65,3 +65,8 @@ loop:
         li $v0, 4
         la $a0, empty_string_error
         syscall
+	li $v0, 10
+	syscall
+	dont_print_empty_string_error:
+	#reusing registers apart from $t5- len(numofcharacters and $t7- numofspaces in front)
+        li $t0, 0							#initialized counter i here
