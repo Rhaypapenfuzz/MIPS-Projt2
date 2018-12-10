@@ -38,22 +38,22 @@ loop:
 	li $v0, 10
 	syscall
 	
-	dont_print_invalid_spaces:
+dont_print_invalid_spaces:
         beq $t1, $t3, dont_incr_num_of_characters       #increase number of characters counter if character is not a space
         addi $t5, $t5, 1
 	
-	dont_incr_num_of_characters:
+dont_incr_num_of_characters:
         bne $t1, $t3, dont_count_space          #if current character is a space and
         bne $t5, $0, dont_count_space           #if num of previous character is equal to 0 then count space
         addi $t7, $t7, 1
 	
-	dont_count_space:
+dont_count_space:
         move $s0, $t1           #set previous character with current one
         addi $t0, $t0, 1        #incremented the address
         addi $t2, $t2, 1        #incremented i
         j loop
 	
-	break_loop:
+break_loop:
         li $t1, 4
         ble $t5, $t1, dont_print_too_long       #checks if userInput is more than 4
         li $v0, 4
@@ -62,7 +62,7 @@ loop:
 	li $v0, 10
 	syscall
 	
-	dont_print_too_long:
+dont_print_too_long:
         bne $t5, $zero, dont_print_empty_string_error   #if user input is empty, and
         beq $t1, $t6, dont_print_empty_string_error     #if user input is a newline print invalid
         li $v0, 4
@@ -71,7 +71,7 @@ loop:
 	li $v0, 10
 	syscall
 	
-	dont_print_empty_string_error:
+dont_print_empty_string_error:
 	#reusing registers apart from $t5- len(numofcharacters and $t7- numofspaces in front)
         li $t0, 0						#initialized counter i here
 	addi $t1, $t5, -1					#initial j(length-1)
@@ -81,7 +81,8 @@ loop:
         li $t4, 1						#power for calculation is 31
 	li $t9, 0						#initial sum of decimal value = zero
         li $s3, 31						#constant for base-31
-	convert_next_digit_loop:
+	
+convert_next_digit_loop:
 	li $t8, -1      #initialized the digit to -1
 	lb $s1, 0($s0)
 	li $t2, 65							#smallest ascii value for capital letters-A
@@ -89,19 +90,22 @@ loop:
         blt $s1, $t2, dont_convert_capital_letter_to_digit      #if ascii[j] >= 65 and
         bgt $s1, $t3, dont_convert_capital_letter_to_digit      #if ascii[j] <= 85
 	addi $t8, $s1, -55					#got the decimal value of the capital letter
-	dont_convert_capital_letter_to_digit:
+dont_convert_capital_letter_to_digit:
+
         li $t2, 97						#smallest ascii value for my lowercase letters-a
         li $t3, 117						#biggest ascii value for my lowercase letters-u
         blt $s1, $t2, dont_convert_lowercase_letter_to_digit    #if ascii[j] >= 85 and
 	bgt $s1, $t3, dont_convert_lowercase_letter_to_digit    #if ascii[j] <= 117
         addi $t8, $s1, -87						#got the decimal value of the capital letter
-	dont_convert_lowercase_letter_to_digit:
+dont_convert_lowercase_letter_to_digit:
+
         li $t2, 48							#smallest ascii value for capital letters
         li $t3, 57							#biggest ascii value for capital letters
 	blt $s1, $t2, dont_convert_digit_to_digit       #if ascii[j] >= 48 and
         bgt $s1, $t3, dont_convert_digit_to_digit       #if ascii[j] <= 57
         addi $t8, $s1, -48						#got the decimal value of the capital letter
-	dont_convert_digit_to_digit:
+dont_convert_digit_to_digit:
+
 	li $s4, -1			 			#initialized -1 in $s4
 	bne $t8, $s4, dont_print_invalid_symbol 		#if $t8 is -1 then print invalid_spaces
 	li $v0, 4
@@ -109,7 +113,8 @@ loop:
 	syscall
 	li $v0, 10
 	syscall
-	dont_print_invalid_symbol:
+dont_print_invalid_symbol:
+
         mul $s2, $t8, $t4					#decimal = digit * power_of_31
         mul $t4, $t4, $s3					#power_of_base *= 31
         add $t9, $t9, $s2					#sum+= decimal
